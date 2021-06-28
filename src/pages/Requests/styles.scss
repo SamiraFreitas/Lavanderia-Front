@@ -1,0 +1,102 @@
+#requests-page {
+  header {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 100px 124px 0px 124px;
+
+    h2 {
+      margin-top: 24px;
+    }
+  }
+
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 48px 124px 0px 124px;
+
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 16px;
+
+      button {
+        display: flex;
+        align-items: center;
+  
+        color: #FFA200;
+        font-size: 36px;
+  
+        border: 1px solid #FFA200;
+        border-radius: 16px;
+        background: #FFF;
+        padding: 2px 16px ;
+        min-width: 164px;
+  
+        transition: 300ms;
+  
+        &:hover {
+          background: #FFA200;
+          color: #FFF;
+        }
+
+        b {
+          color: #000;
+          font-size: 16px;
+          margin-left: 8px;
+        }
+      }
+
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+          border: 1px solid #FFA200;
+          border-radius: 16px;
+          background: #FFF;
+  
+          padding: 8px 16px;
+          width: 364px;
+          margin: 4px 36px 0px 0px;
+        }
+
+        button {
+          color: #FFF;
+          font-size: 24px;
+    
+          border: none;
+          background: #FFA200;
+          padding: 8px 24px ;
+    
+          transition: 300ms;
+    
+          &:hover {
+            background: #047F9F;
+            color: #FFF;
+          }
+        }
+      }
+    }
+
+    .table {
+      margin-top: 64px;
+      height: 500px;
+      width: 100%;
+    }
+  }
+
+  .separator {  
+    display: flex;
+    align-items: center;
+
+    height: 2px;
+    background: #047F9F;
+
+    margin: 32px 64px;
+  }
+}

@@ -1,11 +1,12 @@
 import logo from '../../assets/logo.png';
-import './styles.scss';
+import './style.scss';
+
 export function Login () {
     return (
         
         <div id='page_login'>
-            <h1>La Vanderia</h1>
                 <aside>
+                <h1>La Vanderia</h1>
                    <img src={logo}/>
                    </aside>
 
