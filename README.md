@@ -1,3 +1,5 @@
+![Component 1(1)](https://user-images.githubusercontent.com/73719899/123692494-42285700-d82d-11eb-94fc-ef08d4df6ad5.png)
+
 ## 📜 Índice
 - [📜 Índice](#-índice)
 - [📝 Sobre](#-sobre)
