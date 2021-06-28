@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.png'
+
 
 import './styles.scss';
 
@@ -15,6 +16,9 @@ export function Sidebar({children}: SidebarProps) {
   async function handleToClients() {
     history.push('/clients');
   }
+  async function handleToCosts (){
+    history.push('/costs');
+  }
 
   async function handleToRequests() {
     history.push('/requests');
@@ -27,6 +31,7 @@ export function Sidebar({children}: SidebarProps) {
         <ul>
           <button onClick={handleToClients}>Clientes</button>
           <button onClick={handleToRequests}>Pedidos</button>
+          <button onClick={handleToCosts}>Custos</button>
         </ul>
       </aside>
       <main>
