@@ -24,7 +24,7 @@ Essa aplicação possui um protótipo que pode ser acessado através do link  [F
 - Js
 - CSS
 - React
-- 
+- Typescript
 
   ---
 ## 💻 Como baixar o projeto 
