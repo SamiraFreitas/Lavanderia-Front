@@ -1,14 +1,22 @@
 import { useState, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 
+import { Header } from '../../components/Header';
+import { Button } from '../../components/Button';
 import { useTable, Rows } from '../../hooks/useTable';
 
 import './styles.scss'
 
 export function Clients() {
+  const history = useHistory();
   const { columns, rows } = useTable({type: 'clients'});
   const [searchQuery, setSearchQuery] = useState('');
   const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
+
+  async function handleToNewClient() {
+    history.push('/new/client');
+  }
 
   function handleToSearch(event: FormEvent) {
     event.preventDefault();
@@ -30,23 +38,18 @@ export function Clients() {
 
   return(
     <div id="clients-page" >
-      <header>
-        <h1>Painel Administrativo</h1>
-        <h2>Clientes</h2>
-      </header>
+      <Header title="Clientes"/>
 
-      <div className="separator" ></div>
-      
       <main>
         <div className="section">
-          <button>+<b>Novo Cliente</b></button>
+          <Button onClick={handleToNewClient} isOutlined>+<b>Novo Cliente</b></Button>
           <form onSubmit={handleToSearch}>
             <input 
               type="text" 
               placeholder="Pesquise um cliente pelo nome..." 
               onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
             />
-            <button type="submit">Pesquisar</button>
+            <Button type="submit">Pesquisar</Button>
           </form>
         </div>
         

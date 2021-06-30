@@ -1,0 +1,23 @@
+#content {
+  header {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 100px 124px 0px 124px;
+
+    h2 {
+      margin-top: 24px;
+    }
+  }
+
+  .separator {  
+    display: flex;
+    align-items: center;
+
+    height: 2px;
+    background: #047F9F;
+
+    margin: 32px 64px;
+  }
+}
+

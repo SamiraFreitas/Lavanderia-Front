@@ -1,4 +1,4 @@
-#costs-page {
+#new-client-page {
   main {
     display: flex;
     align-items: center;
@@ -14,7 +14,6 @@
 
       border: 2px solid #047F9F;
       border-radius: 16px;
-
       form {
         display: flex;
         justify-content: space-between;
@@ -23,7 +22,7 @@
         div {
           display: flex;
           flex-direction: column;
-          
+        
           b {
             font-size: 24px;
             margin: 64px 0px 6px 8px;
@@ -45,44 +44,49 @@
             color: #000;
           }
         }
+    }
+    .section {
+      display: flex;
+      flex-direction: column;
+      margin: 36px 164px 64px 164px;
+
+      h3 {
+        font-size: 36px;
       }
 
-      .section {
+      .results {
         display: flex;
-        flex-direction: column;
-        margin: 36px 164px 64px 164px;
+        justify-content: space-between;
+        width: 90%;
 
-        h3 {
-          font-size: 36px;
-        }
-
-        .results {
+        div {
           display: flex;
-          justify-content: space-between;
-          width: 90%;
-
-          div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 24px;
-            
-            label {
-              font-size: 20px;
-            }
-
-            p {
-              margin-top: 16px;
-              padding: 8px 25px;
-
-              background: #047F9F;
-              color: #FFF;
-              border-radius: 8px;
-              font-size: 18px;
-            }
+          flex-direction: column;
+        
+          margin-top: 10px;
+          b {
+            font-size: 24px;
+            margin: 20px 0px 6px 8px;
           }
+          input {
+            font-size: 18px;
+            padding: 6px 8px;
+            width: 350px;
+
+            border: 1px solid #0008;
+            border-radius: 8px;
+          }
+
+          button {
+            height: 42px;
+            margin: 86px 36px 0px 36px;
+            font-size: 20px;
+            color: #000;
+          }
+         
         }
       }
     }
+  }
   }
 }

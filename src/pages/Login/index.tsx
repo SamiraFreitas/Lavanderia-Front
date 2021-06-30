@@ -1,5 +1,5 @@
 import logo from '../../assets/logo.png';
-import './style.scss';
+import './styles.scss';
 
 export function Login () {
     return (

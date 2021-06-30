@@ -1,0 +1,19 @@
+#new-request-page {
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 48px 124px 0px 124px;
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 36px;
+      width: 100%;
+      gap: 16px;
+
+      border: 2px solid #047F9F;
+      border-radius: 16px;
+    }
+  }
+}

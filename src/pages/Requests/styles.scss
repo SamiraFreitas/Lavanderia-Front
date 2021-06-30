@@ -23,33 +23,6 @@
       width: 100%;
       gap: 16px;
 
-      button {
-        display: flex;
-        align-items: center;
-  
-        color: #FFA200;
-        font-size: 36px;
-  
-        border: 1px solid #FFA200;
-        border-radius: 16px;
-        background: #FFF;
-        padding: 2px 16px ;
-        min-width: 164px;
-  
-        transition: 300ms;
-  
-        &:hover {
-          background: #FFA200;
-          color: #FFF;
-        }
-
-        b {
-          color: #000;
-          font-size: 16px;
-          margin-left: 8px;
-        }
-      }
-
       form {
         display: flex;
         align-items: center;
@@ -64,22 +37,6 @@
           width: 364px;
           margin: 4px 36px 0px 0px;
         }
-
-        button {
-          color: #FFF;
-          font-size: 24px;
-    
-          border: none;
-          background: #FFA200;
-          padding: 8px 24px ;
-    
-          transition: 300ms;
-    
-          &:hover {
-            background: #047F9F;
-            color: #FFF;
-          }
-        }
       }
     }
 
@@ -88,15 +45,5 @@
       height: 500px;
       width: 100%;
     }
-  }
-
-  .separator {  
-    display: flex;
-    align-items: center;
-
-    height: 2px;
-    background: #047F9F;
-
-    margin: 32px 64px;
   }
 }
