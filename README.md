@@ -29,11 +29,9 @@ Essa aplicação possui um protótipo que pode ser acessado através do link  [F
 
 ```bash
 #Clonando o repositorio 
-$ git clone https://github.com/SamiraFreitas/Projeto_BancodeDados
+$ git clone https://github.com/SamiraFreitas/Lavanderia
 #Entrar no diretorio 
-$ cd Projeto_BancodeDados
-#Entrar na pasta
-$ cd lavanderia
+$ cd Lavanderia_master
 # Instalar as dependências
 $ yarn install
 #Rode o projeto 
