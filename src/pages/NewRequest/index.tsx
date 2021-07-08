@@ -37,17 +37,18 @@ export function NewRequest() {
             <h3>Previsão</h3>
             <div className="results" >
               <div>
-                <label>Custo médio mensal</label>
+                <label>Data</label>
                
               </div>
               
               <div>
-                <label>Peso mínimo a ser lavado</label>
+                <label>Preço</label>
                 
               </div>
 
-              <div>
-                <label>Lucro</label>
+              <div className="status">
+                <label>Entrega</label>
+                <Button >Verificar Status</Button>
               </div>
             </div>
           </div>

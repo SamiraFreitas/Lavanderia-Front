@@ -7,6 +7,7 @@ import { Requests } from './pages/Requests';
 import { NewRequest } from './pages/NewRequest';
 import { Costs } from './pages/Costs';
 import { Login } from './pages/Login';
+import {Status} from './pages/Status';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/new/client" exact component={NewClient} />
             <Route path="/requests" exact component={Requests} />
             <Route path="/new/request" exact component={NewRequest} />
+            <Route path="/status" exact component={Status} />
             <Route path="/costs" exact component={Costs} />
           </Sidebar>
         </Switch>
