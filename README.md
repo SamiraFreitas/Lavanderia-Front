@@ -1,6 +1,4 @@
-<p align="center">
-  <img alt="Lavanderia" src=".github/../.github/tela.png" width="160px">
-</p>
+![telaa](https://user-images.githubusercontent.com/73719899/124686237-1d755480-dea9-11eb-80dc-af23c37645bb.png)
 
 ## 📜 Índice
 - [📜 Índice](#-índice)
