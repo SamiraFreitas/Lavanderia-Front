@@ -12,6 +12,11 @@
       width: 100%;
       gap: 16px;
 
+      div {
+        display: flex;
+        gap: 16px;
+      }
+
       form {
         display: flex;
         align-items: center;
@@ -24,7 +29,7 @@
   
           padding: 8px 16px;
           width: 364px;
-          margin: 4px 36px 0px 0px;
+          margin: 4px 0px 0px 0px;
         }
       }
     }

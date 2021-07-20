@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
+import { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -10,9 +9,15 @@ import ClientController from '../../service/controllers/ClientController';
 
 import './styles.scss'
 
-export function NewClient() {
-  const history = useHistory();
+type ClientParams = {
+  id: string;
+}
 
+export function EditClient() {
+  const history = useHistory();
+  const params = useParams<ClientParams>();
+
+  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
@@ -25,7 +30,29 @@ export function NewClient() {
   const [district, setDistrict] = useState('');
   const [complement, setComplement] = useState('');
 
-  function handleRegisterClient(){
+  useEffect(() => {
+    ClientController.show(params.id).then((dados) => {
+      if (dados) {
+        setId(dados.id);
+        setName(dados.name);
+        setCpf(dados.cpf);
+        setEmail(dados.email);
+        setPhone(dados.phone);
+        setCep(dados.cep);
+        setCity(dados.city);
+        setState(dados.state);
+        setStreet(dados.street);
+        setNumber(dados.number);
+        setDistrict(dados.district);
+        setComplement(dados.complement);
+      }
+      else{
+        history.push('/clients');
+      }
+    });
+  },[]);
+
+  function handleEditClient(){
     
     if(name !== '' && cpf !== '' && email !== '' && 
       phone !== '' && cep !== '' && city !== '' && 
@@ -33,7 +60,7 @@ export function NewClient() {
       district !== '' && complement !== '') {
         
       const client: Client = {
-      id: uuid(),
+      id,
       name,
       cpf,
       email,
@@ -47,8 +74,8 @@ export function NewClient() {
       complement
       }
 
-      ClientController.create(client).then((dados) => {
-        alert("Cliente "+dados?.name+" cadastrado com sucesso!!!");
+      ClientController.update(client).then((dados) => {
+        alert("Cliente "+dados?.name+" Editado com sucesso!!!");
         history.push('/clients');
       });
     }
@@ -58,8 +85,8 @@ export function NewClient() {
   }
 
   return(
-    <div id="new-client-page" >
-      <Header title="Novo Cliente"/>
+    <div id="edit-client-page" >
+      <Header title="Editar Cliente"/>
       
       <main>
         <div className="board">
@@ -69,14 +96,14 @@ export function NewClient() {
                 <b>Nome</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o nome do cliente..."
-                  onChange={event => setName(event.target.value)} 
+                  onChange={event => setName(event.target.value)}
+                  value={name}
                 />
                 <b>E-mail</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o email do cliente..."
-                  onChange={event => setEmail(event.target.value)} 
+                  onChange={event => setEmail(event.target.value)}
+                  value={email}
                 />
               </div>
 
@@ -84,14 +111,14 @@ export function NewClient() {
                 <b>CPF</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o CPF do cliente..."
                   onChange={event => setCpf(event.target.value)} 
+                  value={cpf}
                 />
                 <b>Telefone</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o telefone do cliente..."
-                  onChange={event => setPhone(event.target.value)} 
+                  onChange={event => setPhone(event.target.value)}
+                  value={phone}
                 />
               </div>
             </div>
@@ -103,20 +130,20 @@ export function NewClient() {
                 <b>CEP</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o CEP do cliente..."
-                  onChange={event => setCep(event.target.value)} 
+                  onChange={event => setCep(event.target.value)}
+                  value={cep}
                 />
                 <b>Rua</b>
                 <input 
                   type="text" 
-                  placeholder="Digite a rua do cliente..."
-                  onChange={event => setStreet(event.target.value)} 
+                  onChange={event => setStreet(event.target.value)}
+                  value={street}
                 />
                 <b>Complemento</b>
                 <input 
                   type="text" 
-                  placeholder="Digite a complemento do cliente..."
-                  onChange={event => setComplement(event.target.value)} 
+                  onChange={event => setComplement(event.target.value)}
+                  value={complement}
                 />
               </div>
 
@@ -124,14 +151,14 @@ export function NewClient() {
                 <b>Cidade</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o cidade do cliente..."
-                  onChange={event => setCity(event.target.value)} 
+                  onChange={event => setCity(event.target.value)}
+                  value={city}
                 />
                 <b>Número</b>
                 <input 
                   type="text" 
-                  placeholder="Digite a número do cliente..."
-                  onChange={event => setNumber(parseFloat(event.target.value))} 
+                  onChange={event => setNumber(parseFloat(event.target.value))}
+                  value={number}
                 />
               </div>
 
@@ -139,21 +166,22 @@ export function NewClient() {
                 <b>Estado</b>
                 <input 
                   type="text" 
-                  placeholder="Digite o estado do cliente..."
-                  onChange={event => setState(event.target.value)} 
+                  onChange={event => setState(event.target.value)}
+                  value={state}
                 />
                 <b>Bairro</b>
                 <input 
                   type="text" 
-                  placeholder="Digite a bairro do cliente..."
-                  onChange={event => setDistrict(event.target.value)} 
+                  onChange={event => setDistrict(event.target.value)}
+                  value={district}
                 />
               </div>
             </div>
           </form>
         </div>
-        <Button onClick={handleRegisterClient}>Cadastrar Cliente</Button>
+        <Button onClick={handleEditClient}>Salvar Alterações</Button>
       </main>
+    
     </div>
   );
 }

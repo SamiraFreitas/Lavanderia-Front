@@ -1,38 +1,60 @@
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid, GridSelectionModelChangeParams } from '@material-ui/data-grid';
 
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
-import { useTable, Rows } from '../../hooks/useTable';
+import { useTable, RowClient } from '../../hooks/useTable';
+
+import ClientController from '../../service/controllers/ClientController';
 
 import './styles.scss'
 
 export function Clients() {
   const history = useHistory();
-  const { columns, rows } = useTable({type: 'clients'});
   const [searchQuery, setSearchQuery] = useState('');
-  const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
+  const { columns, rowsClient } = useTable({type: 'clients', search: searchQuery});
+  const [rowsSelected, setRowsSelected] = useState<RowClient[]>([]);
 
   async function handleToNewClient() {
     history.push('/new/client');
   }
 
-  function handleToSearch(event: FormEvent) {
-    event.preventDefault();
-    
-    setRowsFiltered([]);
-
-    if(searchQuery.trim() === '') {
-      setRowsFiltered(rows);
+  async function handleToSelectedClient(elements: GridSelectionModelChangeParams) {
+    const selected = new Set(elements.selectionModel);
+    setRowsSelected(rowsClient.filter((client: RowClient) => selected.has(client.id)));
+  }
+  
+  async function handleToEditClient() {
+    if(rowsSelected.length > 1){
+      alert("Não é possível editar mais de um cliente por vez.");
+      return
     }
-    else {
-      setRowsFiltered(rows.filter((client) => {
-        if(client.name){
-         return client.name.includes(searchQuery);
-        }
-        else return false;
-      }));
+    if(rowsSelected.length < 1){
+      alert("Selecione um cliente para editar.");
+      return
+    }
+
+    history.push(`/edit/client/${rowsSelected[0].id}`);
+  }
+
+  async function handleToRemoveClient() {
+    if(rowsSelected.length < 1){
+      alert("Selecione um ou mais clientes para excluir.");
+      return
+    }
+
+    let names = '';
+    rowsSelected.forEach(e => {
+      names = names + e.name + ', ';
+    })
+
+    if(window.confirm('Deseja excluir o(s) cliente(s) '+ names + '?')) {
+      ClientController.delete(rowsSelected).then(() => {
+        alert("Clientes excluídos com sucesso!!!");
+        setSearchQuery(' ');
+        setSearchQuery('');
+      });
     }
   }
 
@@ -42,19 +64,22 @@ export function Clients() {
 
       <main>
         <div className="section">
-          <Button onClick={handleToNewClient} isOutlined>+<b>Novo Cliente</b></Button>
-          <form onSubmit={handleToSearch}>
+          <div>
+            <Button onClick={handleToNewClient} isOutlined>✛<b>Novo Cliente</b></Button>
+            <Button onClick={handleToEditClient} isOutlined>✎<b>Editar Cliente</b></Button>
+            <Button onClick={handleToRemoveClient} isOutlined>✕<b>Excluir Cliente</b></Button>
+          </div>
+          <form>
             <input 
               type="text" 
               placeholder="Pesquise um cliente pelo nome..." 
               onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
             />
-            <Button type="submit">Pesquisar</Button>
           </form>
         </div>
         
         <div className="table">
-          <DataGrid rows={rowsFiltered} columns={columns} pageSize={9} checkboxSelection />
+          <DataGrid rows={rowsClient} columns={columns} pageSize={8} checkboxSelection onSelectionModelChange={e => handleToSelectedClient(e)}/>
         </div>
       </main>
     </div>

@@ -4,15 +4,15 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
-import { useTable, Rows } from '../../hooks/useTable';
+import { useTable, RowRequest } from '../../hooks/useTable';
 
 import './styles.scss'
 
 export function Requests() {
   const history = useHistory();
-  const { columns, rows } = useTable({type: 'requests'});
   const [searchQuery, setSearchQuery] = useState('');
-  const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
+  const { columns, rowsRequest } = useTable({type: 'requests', search: searchQuery});
+  const [rowsFiltered, setRowsFiltered] = useState<RowRequest[]>(rowsRequest);
 
   async function handleToNewRequest() {
     history.push('/new/request');
@@ -24,10 +24,10 @@ export function Requests() {
     setRowsFiltered([]);
 
     if(searchQuery.trim() === '') {
-      setRowsFiltered(rows);
+      setRowsFiltered(rowsRequest);
     }
     else {
-      setRowsFiltered(rows.filter((request) => {
+      setRowsFiltered(rowsRequest.filter((request: RowRequest) => {
         if(request.requestCode){
          return request.requestCode.includes(searchQuery);
         }
@@ -54,7 +54,7 @@ export function Requests() {
         </div>
         
         <div className="table">
-          <DataGrid rows={rowsFiltered} columns={columns} pageSize={9} checkboxSelection />
+          <DataGrid rows={rowsRequest} columns={columns} pageSize={9} checkboxSelection />
         </div>
       </main>
     </div>
