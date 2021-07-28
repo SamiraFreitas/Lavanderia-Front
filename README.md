@@ -11,7 +11,8 @@
 
 ## 📝 Sobre 
 Este repositório é referente ao projeto de desenvolvimento web para a matéria Banco de Dados I. 
-Projeto em desenvolvimento por uma dupla, ele irá conter conhecimentos compartilhados que serão aplicados em um sistema web para uma lavanderia. 
+O sistema administrativo tem como objetivo controlar clientes, pedidos e custos de uma lavanderia. 
+A aplicação tera consulta a um banco de dados. Além disso, possuirá cruds para os clientes, e os pedidos. 
 
 ## 👀 Layout da aplicação
 
