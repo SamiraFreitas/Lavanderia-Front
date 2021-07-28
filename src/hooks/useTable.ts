@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import ClientController from '../service/controllers/ClientController';
+import RequestController from '../service/controllers/RequestController';
 
 type TableProps = {
   type: string;
   search: string;
 }
 
-type Columns = {
+type Column = {
   field: string;
   headerName?: string;
   description?: string;
@@ -21,25 +22,23 @@ type Columns = {
   filterable?: boolean;
 }
 
-export type RowClient = { 
+export type Row = { 
   id: string;
-  cpf?: string;
   name?: string;
+
+  cpf?: string;
   phone?: string; 
   email?: string;
-}
 
-export type RowRequest = { 
-  id: number;
-  name?: string;
-  requestCode?: string;
+  weight?: number;
+  price?: number;
+  isPaid?: boolean;
   status?: string;
 }
 
 export function useTable({type, search}: TableProps) {
-  const [columns, setColumns] = useState<Columns[]>([]);
-  const [rowsClient, setRowsClient] = useState<RowClient[]>([]);
-  const [rowsRequest, setRowsRequest] = useState<RowRequest[]>([]);
+  const [columns, setColumns] = useState<Column[]>([]);
+  const [rows, setRows] = useState<Row[]>([]);
 
   useEffect(() => {
     if(type === 'clients') {
@@ -51,10 +50,10 @@ export function useTable({type, search}: TableProps) {
       ]);
       ClientController.read().then((clients) => { if(clients){
         if(search.trim() === '') {
-          setRowsClient(clients);
+          setRows(clients);
         }
         else {
-          setRowsClient(clients.filter((client) => {
+          setRows(clients.filter((client) => {
             if(client.name){
               return client.name.includes(search);
             }
@@ -65,24 +64,28 @@ export function useTable({type, search}: TableProps) {
     } 
     else if(type === 'requests') {
       setColumns([
-        { field: 'requestCode', headerName: 'Código', width: 400 },
-        { field: 'name', headerName: 'Nome', width: 400 },
-        { field: 'status', headerName: 'Status', width: 400 },
+        { field: 'name', headerName: 'Nome', width: 240 },
+        { field: 'weight', headerName: 'Peso (Kg)', width: 240 },
+        { field: 'price', headerName: 'Preço (R$)', width: 240 },
+        { field: 'isPaid', headerName: 'Pago', width: 240 },
+        { field: 'status', headerName: 'Status', width: 240 },
       ]);
       
-      setRowsRequest([
-        { id: 1, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 2, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 3, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 4, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 5, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 6, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 7, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 8, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 9, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      ]); 
+      RequestController.read().then((requests) => { if(requests){
+        if(search.trim() === '') {
+          setRows(requests);
+        }
+        else {
+          setRows(requests.filter((request) => {
+            if(request.name){
+              return request.name.includes(search);
+            }
+            else return false;
+          }));
+        }
+      }});
     }
   }, [type, search]);
 
-  return {columns, rowsClient, rowsRequest};
+  return {columns, rows};
 }

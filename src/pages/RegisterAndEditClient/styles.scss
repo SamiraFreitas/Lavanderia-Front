@@ -1,0 +1,36 @@
+#register-and-edit-client {
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 84rem;
+    margin: 0 auto;
+
+    .board {
+      margin-bottom: 2rem;
+      height: 38rem;
+      width: 100%;
+
+      border: 0.15rem solid #047F9F;
+      border-radius: 1rem;
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0rem 0rem 4rem;
+
+        h2 {
+          font-size: 1.5rem;
+          margin: 2.5rem 0rem 0rem 0.5rem;
+        }
+
+        .Infos {
+          display: flex;
+          div {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

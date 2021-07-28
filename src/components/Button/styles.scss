@@ -1,11 +1,11 @@
 .button {
   color: #FFF;
-  font-size: 24px;
+  font-size: 1.5rem;
 
   border: none;
   background: #FFA200;
-  padding: 8px 24px;
-  border-radius: 16px;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
 
   transition: 300ms;
 
@@ -20,13 +20,12 @@
     justify-content: center;
 
     color: #FFA200;
-    font-size: 24px;
+    font-size: 1.5rem;
 
-    border: 1px solid #FFA200;
-    border-radius: 16px;
+    border: 0.1rem solid #FFA200;
+    border-radius: 1rem;
     background: #FFF;
-    padding: 6px 16px ;
-    min-width: 164px;
+    padding: 0.4rem 1rem;
 
     transition: 300ms;
 
@@ -37,8 +36,9 @@
 
     b {
       color: #000;
-      font-size: 16px;
-      margin-left: 8px;
+      font-size: 1rem;
+      margin-left: 0.5rem;
+      margin-top: 0.2rem;
     }
   }
 }

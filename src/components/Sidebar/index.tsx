@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import logo from '../../assets/logo.png'
+import logo from '../../assets/capa.png';
 
 import './styles.scss';
 
@@ -29,14 +29,14 @@ export function Sidebar({children}: SidebarProps) {
       <aside>
         <img src={logo} alt="Logo"/>
         <div className="list">
-          <b onClick={handleToClients}>Clientes</b>
-          <b onClick={handleToRequests}>Pedidos</b>
-          <b onClick={handleToCosts}>Custos</b>
+          <span onClick={handleToClients}>Clientes</span>
+          <span onClick={handleToRequests}>Pedidos</span>
+          <span onClick={handleToCosts}>Custos</span>
         </div>
       </aside>
-      <main>
-          {children}
-      </main>
+      <section>
+        {children}
+      </section>
     </div>
   );
 }

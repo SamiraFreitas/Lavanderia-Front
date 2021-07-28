@@ -3,7 +3,7 @@
     {
       "id": "DRH96KVD4PS",
       "name": "Nigel",
-      "cpf": "1678091760299",
+      "cpf": "16780917602",
       "email": "ornare@ac.com",
       "phone": "(734) 895-4670",
       "cep": "KI4Z 2CH",
@@ -17,7 +17,7 @@
     {
       "id": "LXD65CKK0ZQ",
       "name": "Alika",
-      "cpf": "1693091238499",
+      "cpf": "16930912384",
       "email": "senectus@lacus.co.uk",
       "phone": "(420) 727-4270",
       "cep": "Z6487",
@@ -31,7 +31,7 @@
     {
       "id": "FIA40NRC4TW",
       "name": "Fuller",
-      "cpf": "1650081515299",
+      "cpf": "16500815152",
       "email": "luctus@intempuseu.org",
       "phone": "(158) 509-4062",
       "cep": "275994",
@@ -45,7 +45,7 @@
     {
       "id": "STA96XXL5NK",
       "name": "Emerson",
-      "cpf": "1689012785999",
+      "cpf": "16890127859",
       "email": "auctor.Mauris@mollisneccursus.net",
       "phone": "(391) 912-8437",
       "cep": "86595",
@@ -59,7 +59,7 @@
     {
       "id": "GKG35VKT6SK",
       "name": "Stella",
-      "cpf": "1672010809099",
+      "cpf": "16720108090",
       "email": "tincidunt.orci@fermentumconvallisligula.net",
       "phone": "(330) 529-0620",
       "cep": "357661",
@@ -73,7 +73,7 @@
     {
       "id": "XXI05OLG1HN",
       "name": "Sylvester",
-      "cpf": "1645121593999",
+      "cpf": "16451215939",
       "email": "eros@placerataugue.edu",
       "phone": "(622) 700-3868",
       "cep": "78767",
@@ -87,7 +87,7 @@
     {
       "id": "BBF10RYG9WS",
       "name": "Logan",
-      "cpf": "1648031809399",
+      "cpf": "16480318093",
       "email": "arcu.Vestibulum@Aeneaneuismod.ca",
       "phone": "(117) 392-8607",
       "cep": "27505",
@@ -101,7 +101,7 @@
     {
       "id": "BGX25FUR8UL",
       "name": "Moses",
-      "cpf": "1638022975599",
+      "cpf": "16380229755",
       "email": "vulputate.nisi@ametrisus.org",
       "phone": "(470) 527-5100",
       "cep": "719888",
@@ -115,7 +115,7 @@
     {
       "id": "YJD12TDV2MS",
       "name": "Gregory",
-      "cpf": "1688122080199",
+      "cpf": "16881220801",
       "email": "ligula.eu@maurisidsapien.co.uk",
       "phone": "(495) 913-1658",
       "cep": "5416",
@@ -129,7 +129,7 @@
     {
       "id": "LEE49KFM1RJ",
       "name": "Carlos",
-      "cpf": "1617022074899",
+      "cpf": "16170220748",
       "email": "enim.sit@arcuvel.net",
       "phone": "(927) 240-9202",
       "cep": "3269",
@@ -139,269 +139,21 @@
       "number": 464,
       "district": "IL",
       "complement": "Eget Ipsum Donec Institute"
-    },
-    {
-      "id": "CBY42WNW6QL",
-      "name": "Emi",
-      "cpf": "1635032921399",
-      "email": "aliquam@tristique.ca",
-      "phone": "(136) 685-1853",
-      "cep": "7105",
-      "city": "Bath",
-      "state": "Guinea-Bissau",
-      "street": "Ap #220-4904 Eleifend St.",
-      "number": 10,
-      "district": "ON",
-      "complement": "Fringilla Cursus Purus Associates"
-    },
-    {
-      "id": "KXP40ZVA3CZ",
-      "name": "Ronan",
-      "cpf": "1652102797999",
-      "email": "et.malesuada.fames@egestasAliquamnec.ca",
-      "phone": "(829) 679-0357",
-      "cep": "99272",
-      "city": "La Seyne-sur-Mer",
-      "state": "Serbia",
-      "street": "Ap #827-7418 Lorem, Road",
-      "number": 427,
-      "district": "Provence-Alpes-Côte d'Azur",
-      "complement": "At Auctor Ullamcorper Company"
-    },
-    {
-      "id": "HEN47LAJ7NM",
-      "name": "Yen",
-      "cpf": "1607122302199",
-      "email": "ut@musProin.ca",
-      "phone": "(693) 304-8654",
-      "cep": "748514",
-      "city": "Nantes",
-      "state": "Czech Republic",
-      "street": "2508 Tellus Rd.",
-      "number": 59,
-      "district": "PA",
-      "complement": "Turpis Nulla Aliquet Industries"
-    },
-    {
-      "id": "WTH17LVZ7HS",
-      "name": "Althea",
-      "cpf": "1691011257099",
-      "email": "id@tempus.ca",
-      "phone": "(983) 834-8914",
-      "cep": "K0W 2X0",
-      "city": "Bello",
-      "state": "Guam",
-      "street": "Ap #362-5604 Pretium Rd.",
-      "number": 13,
-      "district": "Antioquia",
-      "complement": "Euismod Et Commodo Corp."
-    },
-    {
-      "id": "UPA85HLZ0FW",
-      "name": "Vincent",
-      "cpf": "1616032279099",
-      "email": "mus@anteVivamus.ca",
-      "phone": "(696) 274-0057",
-      "cep": "84219",
-      "city": "Medemblik",
-      "state": "Ukraine",
-      "street": "Ap #646-8848 Elit. Street",
-      "number": 406,
-      "district": "N.",
-      "complement": "Risus Donec LLC"
-    },
-    {
-      "id": "TSB78GVC1AB",
-      "name": "Armand",
-      "cpf": "1665011741199",
-      "email": "nec.quam@risusaultricies.com",
-      "phone": "(495) 813-6073",
-      "cep": "81974",
-      "city": "Cartagena",
-      "state": "Bermuda",
-      "street": "Ap #940-6262 Pretium St.",
-      "number": 423,
-      "district": "MU",
-      "complement": "Egestas Corporation"
-    },
-    {
-      "id": "BQK41OLV5EI",
-      "name": "Callie",
-      "cpf": "1691011048099",
-      "email": "ad.litora.torquent@risusquis.edu",
-      "phone": "(731) 977-8084",
-      "cep": "1258",
-      "city": "Cajazeiras",
-      "state": "Macao",
-      "street": "Ap #507-4455 Donec St.",
-      "number": 377,
-      "district": "Paraíba",
-      "complement": "Arcu Ac Orci PC"
-    },
-    {
-      "id": "VHN09ZGL8TI",
-      "name": "Jessamine",
-      "cpf": "1693070341199",
-      "email": "nec.urna.suscipit@aliquet.co.uk",
-      "phone": "(973) 691-0194",
-      "cep": "77775",
-      "city": "Waiuku",
-      "state": "Greenland",
-      "street": "929-8797 Nascetur St.",
-      "number": 38,
-      "district": "North Island",
-      "complement": "Pede Nunc Sed Corporation"
-    },
-    {
-      "id": "PUF48UFD8WT",
-      "name": "Caleb",
-      "cpf": "1647072836899",
-      "email": "nunc.risus.varius@natoquepenatibuset.co.uk",
-      "phone": "(553) 357-0790",
-      "cep": "9301 GQ",
-      "city": "Göteborg",
-      "state": "Åland Islands",
-      "street": "597-3759 Metus St.",
-      "number": 188,
-      "district": "Västra Götalands län",
-      "complement": "Sit Amet Corp."
-    },
-    {
-      "id": "AMM80ECD3QF",
-      "name": "Jason",
-      "cpf": "1663092731899",
-      "email": "Aenean.eget.metus@Nullamvelit.com",
-      "phone": "(848) 867-2759",
-      "cep": "2324",
-      "city": "Pohang",
-      "state": "Malta",
-      "street": "Ap #953-8222 Pede Ave",
-      "number": 495,
-      "district": "Gye",
-      "complement": "Pellentesque Ut LLC"
     }
   ],
 
   "requests": [
     {
-      "id": "NVB24ETW4XC",
-      "requestCode": "1944",
-      "name": "Freya",
-      "status": "Entrega"
-    },
-    {
-      "id": "PJS31BJY6XQ",
-      "requestCode": "4205",
-      "name": "Tyler",
-      "status": "Lavando"
-    },
-    {
-      "id": "VNI15LVZ2SL",
-      "requestCode": "8417",
-      "name": "Richard",
-      "status": "Entrega"
-    },
-    {
-      "id": "MMX48JJV7XS",
-      "requestCode": "1920",
-      "name": "Rosalyn",
-      "status": "Espera"
-    },
-    {
-      "id": "MAA44ZIL2UX",
-      "requestCode": "3170",
-      "name": "Honorato",
-      "status": "Espera"
-    },
-    {
-      "id": "CHD66SDT7CO",
-      "requestCode": "8052",
-      "name": "Cleo",
-      "status": "Lavando"
-    },
-    {
-      "id": "VQT13DLP1BH",
-      "requestCode": "5769",
-      "name": "Jacqueline",
-      "status": "Espera"
-    },
-    {
-      "id": "CVA65ZNF7BE",
-      "requestCode": "8892",
-      "name": "Oren",
-      "status": "Lavando"
-    },
-    {
-      "id": "MPN56WXF9IH",
-      "requestCode": "6136",
-      "name": "Indira",
-      "status": "Lavando"
-    },
-    {
-      "id": "KMB62VTY4ZR",
-      "requestCode": "9140",
-      "name": "Hyatt",
-      "status": "Entrega"
-    },
-    {
-      "id": "WVH91DNH8CS",
-      "requestCode": "1530",
-      "name": "Gabriel",
-      "status": "Lavando"
-    },
-    {
-      "id": "ZCW00FBR1QB",
-      "requestCode": "6493",
-      "name": "Calvin",
-      "status": "Entrega"
-    },
-    {
-      "id": "JVD33YIS5NZ",
-      "requestCode": "6406",
-      "name": "Hector",
-      "status": "Lavando"
-    },
-    {
-      "id": "XNP49HZY6IJ",
-      "requestCode": "1926",
-      "name": "Shad",
-      "status": "Entrega"
-    },
-    {
-      "id": "SXH17BMH6ZF",
-      "requestCode": "7509",
-      "name": "Cameran",
-      "status": "Entrega"
-    },
-    {
-      "id": "LCX74JTG8DG",
-      "requestCode": "8843",
-      "name": "Brody",
-      "status": "Lavando"
-    },
-    {
-      "id": "MKX00WNU5PG",
-      "requestCode": "4347",
-      "name": "Darius",
-      "status": "Entrega"
-    },
-    {
-      "id": "ZQM74ZLQ2VE",
-      "requestCode": "6806",
-      "name": "Tamara",
-      "status": "Espera"
-    },
-    {
-      "id": "CIN36LPO2FO",
-      "requestCode": "1902",
-      "name": "Berk",
-      "status": "Lavando"
-    },
-    {
-      "id": "YAW25SYM8SP",
-      "requestCode": "8071",
-      "name": "Alan",
-      "status": "Espera"
+      "id": "SDF654AS6EF56F",
+      "name": "Nigel",
+      "cpf": "16780917602",
+      "weight": 4,
+      "type": "hand",
+      "isDelivery": true,
+      "price": 285,
+      "date": "12/07/2021",
+      "isPaid": false,
+      "status": "washing"
     }
   ]
 }

@@ -1,0 +1,110 @@
+#Modal {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: auto;
+  width: 40rem;
+
+  border: 0.15rem solid #047F9F;
+  border-radius: 2rem;
+
+  .header {
+    h1 {
+      margin: 1rem 2rem;
+      font-size: 1.8rem;
+    }
+
+    .separator {  
+      margin: 0 auto;
+      width: 95%;
+
+      height: 0.15rem;
+      background: #047F9F;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .alert {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 95%;
+
+    div {
+      display: flex;
+      justify-content: center;
+      height: auto;
+
+      label {
+        font-size: 1.3rem;
+      }
+    }
+
+    button {
+      font-size: 1rem;
+      padding: auto;
+      width: 6rem;
+      margin: 2.5rem 0rem 0.5rem 32rem;
+    }
+  }
+
+  .confirm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 95%;
+
+    .text {
+      display: flex;
+      justify-content: center;
+      height: auto;
+
+      label {
+        font-size: 1.3rem;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      margin: 2.5rem 0rem 0.5rem 22rem;
+      gap: 1rem;
+
+      button {
+        font-size: 1rem;
+        padding: auto;
+        width: 8rem;
+      }
+    }
+  }
+
+  .custom {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 95%;
+
+    .section {
+      display: flex;
+      justify-content: center;
+      height: auto;
+
+      label {
+        font-size: 1.3rem;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      margin: 2.5rem 0rem 0.5rem 22rem;
+      gap: 1rem;
+
+      button {
+        font-size: 1rem;
+        padding: auto;
+        width: 8rem;
+      }
+    }
+  }
+}

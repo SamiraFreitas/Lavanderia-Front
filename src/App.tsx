@@ -2,12 +2,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { Sidebar } from './components/Sidebar';
 import { Clients } from './pages/Clients';
-import { NewClient } from './pages/NewClient';
-import { EditClient } from './pages/EditClient';
+import { RegisterAndEditClient } from './pages/RegisterAndEditClient';
 import { Requests } from './pages/Requests';
-import { NewRequest } from './pages/NewRequest';
+import { RegisterRequest } from './pages/RegisterRequest';
 import { Costs } from './pages/Costs';
-import {Status} from './pages/Status';
 
 function App() {
   return (
@@ -15,12 +13,11 @@ function App() {
         <Switch>
           <Sidebar>
             <Route path="/clients" component={Clients} />
-            <Route path="/new/client" component={NewClient} />
-            <Route path="/edit/client/:id" component={EditClient} />
+            <Route path="/new/client" component={RegisterAndEditClient} />
+            <Route path="/edit/client/:id" component={RegisterAndEditClient} />
             <Route path="/requests" component={Requests} />
-            <Route path="/new/request" component={NewRequest} />
+            <Route path="/new/request" component={RegisterRequest} />
             <Route path="/costs" component={Costs} />
-            <Route path="/status" exact component={Status} />
           </Sidebar>
         </Switch>
     </BrowserRouter>

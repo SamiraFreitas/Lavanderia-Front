@@ -4,24 +4,24 @@ import { clients } from '../data/data.json';
 export default {
   async create(client: Client) {
     try {
-      let dados: Client[] = [];
+      let clientsData: Client[] = [];
       const storage = localStorage.getItem('clients');
 
       if(storage){
-        dados = JSON.parse(storage);
+        clientsData = JSON.parse(storage);
       }
       else {
         localStorage.setItem('clients', JSON.stringify(clients));
-        dados = JSON.parse(JSON.stringify(clients));
+        clientsData = JSON.parse(JSON.stringify(clients));
       }
 
-      if(dados.find((e) => e.cpf === client.cpf)){
+      if(clientsData.find((e) => e.cpf === client.cpf)){
         alert("error Client Exists");
         return
       }
 
-      dados.push(client);
-      localStorage.setItem('clients', JSON.stringify(dados));
+      clientsData.push(client);
+      localStorage.setItem('clients', JSON.stringify(clientsData));
       return client;
       
     }catch (error) {
@@ -33,13 +33,13 @@ export default {
     try {
       const storage = localStorage.getItem('clients');
       if(storage){
-        const dados: Client[] = JSON.parse(storage);
-        return dados;
+        const clientsData: Client[] = JSON.parse(storage);
+        return clientsData;
       }
       else {
         localStorage.setItem('clients', JSON.stringify(clients));
-        const dados: Client[] = JSON.parse(JSON.stringify(clients));
-        return dados;
+        const clientsData: Client[] = JSON.parse(JSON.stringify(clients));
+        return clientsData;
       }
     } catch (error) {
       alert("Could not list.\n" + error);
@@ -48,22 +48,22 @@ export default {
   
   async update(client: Client) {
     try {
-      let dados: Client[] = [];
+      let clientsData: Client[] = [];
       const storage = localStorage.getItem('clients');
 
       if(storage){
-        dados = JSON.parse(storage);
+        clientsData = JSON.parse(storage);
       }
       else {
         localStorage.setItem('clients', JSON.stringify(clients));
-        dados = JSON.parse(JSON.stringify(clients));
+        clientsData = JSON.parse(JSON.stringify(clients));
       }
 
-      const index = dados.findIndex((e) => e.id === client.id);
+      const index = clientsData.findIndex((e) => e.id === client.id);
 
       if(index >= 0){
-        dados[index] = client;
-        localStorage.setItem('clients', JSON.stringify(dados));
+        clientsData[index] = client;
+        localStorage.setItem('clients', JSON.stringify(clientsData));
         return client;
       }
       else {
@@ -78,22 +78,22 @@ export default {
   
   async delete(elements: {id: string}[]) {
     try {
-      let dados: Client[] = [];
+      let clientsData: Client[] = [];
       const storage = localStorage.getItem('clients');
 
       if(storage){
-        dados = JSON.parse(storage);
+        clientsData = JSON.parse(storage);
       }
       else {
         localStorage.setItem('clients', JSON.stringify(clients));
-        dados = JSON.parse(JSON.stringify(clients));
+        clientsData = JSON.parse(JSON.stringify(clients));
       }
 
       elements.map((element) => {
-        const index = dados.findIndex((e) => e.id === element.id);
+        const index = clientsData.findIndex((e) => e.id === element.id);
         if(index >= 0){
-          dados.splice(index, 1);
-          localStorage.setItem('clients', JSON.stringify(dados));
+          clientsData.splice(index, 1);
+          localStorage.setItem('clients', JSON.stringify(clientsData));
         }
         else {
           alert(`error Client ${index} no exists!`);
@@ -104,26 +104,34 @@ export default {
     }
   },
 
-  async show(id: string) {
+  async show(code: string, search: string) {
     try {
-      let dados: Client[] = [];
+      let clientsData: Client[] = [];
       const storage = localStorage.getItem('clients');
 
       if(storage){
-        dados = JSON.parse(storage);
+        clientsData = JSON.parse(storage);
       }
       else {
         localStorage.setItem('clients', JSON.stringify(clients));
-        dados = JSON.parse(JSON.stringify(clients));
+        clientsData = JSON.parse(JSON.stringify(clients));
       }
 
-      const client = dados.find((e) => e.id === id);
+      let client;
+      switch (search) {
+        case 'id':
+          client = clientsData.find((e) => e.id === code);
+          break;
+        case 'cpf':
+          client = clientsData.find((e) => e.cpf === code);
+          break;
+      }
 
       if(client){
         return client;
       }
       else{
-        alert("error Client Exists");
+        alert("error Client don't Exists");
         return
       }
     } catch (error) {

@@ -1,0 +1,35 @@
+#CRUD-Page {
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 84rem;
+    margin: 0 auto;
+
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      div {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      input {
+        border: 0.1rem solid #FFA200;
+        border-radius: 1.5rem;
+        background: #FFF;
+
+        padding: 0.5rem 1rem;
+        width: 25rem;
+      }
+    }
+
+    .table {
+      margin-top: 2rem;
+      height: 34rem;
+      width: 100%;
+    }
+  }
+}
