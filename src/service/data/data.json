@@ -1,4 +1,20 @@
 {
+  "administrator": {
+    "email": "teste@email.com",
+    "password": "12345678",
+    "token": "ASD4SA6F4WE-65R4F8F4SE6-FS5F9DS489"
+  },
+
+  "cost": {
+    "expenses": 4000,
+    "profit": 1520,
+    "washingMachine": 60,
+    "washingHand": 80,
+    "washingDry": 100,
+    "costMedium": 5520,
+    "weightMinimum": 92
+  },
+
   "clients": [
     {
       "id": "DRH96KVD4PS",

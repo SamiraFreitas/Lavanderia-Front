@@ -1,7 +1,7 @@
 import { Client } from '../models/Client';
 import { clients } from '../data/data.json';
 
-export default {
+const ClientController = {
   async create(client: Client) {
     try {
       let clientsData: Client[] = [];
@@ -89,7 +89,7 @@ export default {
         clientsData = JSON.parse(JSON.stringify(clients));
       }
 
-      elements.map((element) => {
+      elements.forEach((element) => {
         const index = clientsData.findIndex((e) => e.id === element.id);
         if(index >= 0){
           clientsData.splice(index, 1);
@@ -139,3 +139,5 @@ export default {
     }
   },
 }
+
+export default ClientController;

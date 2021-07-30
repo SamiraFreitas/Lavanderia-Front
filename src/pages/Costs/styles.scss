@@ -3,83 +3,55 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 48px 124px 0px 124px;
+    width: 84rem;
+    margin: 0 auto;
 
     .board {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 36px;
+      margin-bottom: 2rem;
+      height: 38rem;
       width: 100%;
-      gap: 16px;
 
-      border: 2px solid #047F9F;
-      border-radius: 16px;
-
+      border: 0.15rem solid #047F9F;
+      border-radius: 1rem;
+      
       form {
         display: flex;
-        justify-content: space-between;
-        margin: 0px 164px;
+        flex-direction: row;
+        margin: 3rem 0rem 0rem 4rem;
+        gap: 8rem;
 
         div {
           display: flex;
           flex-direction: column;
-          
-          b {
-            font-size: 24px;
-            margin: 64px 0px 6px 8px;
-          }
 
-          input {
-            font-size: 18px;
-            padding: 6px 8px;
-            width: 350px;
-
-            border: 1px solid #0008;
-            border-radius: 8px;
+          h3 {
+            font-size: 1.5rem;
           }
+        }
 
-          button {
-            height: 42px;
-            margin: 86px 36px 0px 36px;
-            font-size: 20px;
-            color: #000;
-          }
+        button {
+          margin-top: 6rem;
+          margin-bottom: 1rem;
         }
       }
 
       .section {
         display: flex;
         flex-direction: column;
-        margin: 36px 164px 64px 164px;
+        margin: 4rem 0rem 0rem 5rem;
 
         h3 {
-          font-size: 36px;
+          font-size: 1.5rem;
         }
 
         .results {
           display: flex;
           justify-content: space-between;
-          width: 90%;
+          width: 80%;
 
           div {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            margin-top: 24px;
-            
-            label {
-              font-size: 20px;
-            }
-
-            p {
-              margin-top: 16px;
-              padding: 8px 25px;
-
-              background: #047F9F;
-              color: #FFF;
-              border-radius: 8px;
-              font-size: 18px;
-            }
           }
         }
       }

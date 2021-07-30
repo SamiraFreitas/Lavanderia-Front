@@ -1,25 +1,11 @@
 import { useEffect, useState } from 'react';
+import { TableColumn } from 'react-data-table-component/dist/DataTable/types';
 import ClientController from '../service/controllers/ClientController';
 import RequestController from '../service/controllers/RequestController';
 
 type TableProps = {
   type: string;
   search: string;
-}
-
-type Column = {
-  field: string;
-  headerName?: string;
-  description?: string;
-  width?: number;
-  flex?: number;
-  hide?: boolean;
-  sortable?: boolean;
-  resizable?: boolean;
-  editable?: boolean;
-  hideSortIcons?: boolean;
-  disableColumnMenu?: boolean;
-  filterable?: boolean;
 }
 
 export type Row = { 
@@ -32,21 +18,21 @@ export type Row = {
 
   weight?: number;
   price?: number;
-  isPaid?: boolean;
+  isPaid?: boolean | string;
   status?: string;
 }
 
 export function useTable({type, search}: TableProps) {
-  const [columns, setColumns] = useState<Column[]>([]);
+  const [columns, setColumns] = useState<TableColumn[]>([]);
   const [rows, setRows] = useState<Row[]>([]);
 
   useEffect(() => {
     if(type === 'clients') {
       setColumns([
-        { field: 'name', headerName: 'Nome', width: 300 },
-        { field: 'cpf', headerName: 'CPF', width: 250 },
-        { field: 'phone', headerName: 'Telefone', width: 250 },
-        { field: 'email', headerName: 'Email', width: 300}
+        { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
+        { selector: row => 'cpf', name: 'CPF', sortable: true, format: row => {return row.cpf.toString()}},
+        { selector: row => 'phone', name: 'Telefone', sortable: true, format: row => {return row.phone.toString()}},
+        { selector: row => 'email', name: 'Email', sortable: true, format: row => {return row.email.toString()}}
       ]);
       ClientController.read().then((clients) => { if(clients){
         if(search.trim() === '') {
@@ -64,11 +50,21 @@ export function useTable({type, search}: TableProps) {
     } 
     else if(type === 'requests') {
       setColumns([
-        { field: 'name', headerName: 'Nome', width: 240 },
-        { field: 'weight', headerName: 'Peso (Kg)', width: 240 },
-        { field: 'price', headerName: 'Preço (R$)', width: 240 },
-        { field: 'isPaid', headerName: 'Pago', width: 240 },
-        { field: 'status', headerName: 'Status', width: 240 },
+        { selector: row => 'date', name: 'Data', sortable: true, format: row => {return row.date.toString()}},
+        { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
+        { selector: row => 'weight', name: 'Peso', sortable: true, format: row => {return row.weight.toString().concat(' Kg')}},
+        { selector: row => 'price', name: 'Preço', sortable: true, format: row => {return row.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}},
+        { selector: row => 'isPaid', name: 'Pago', sortable: true, format: row => {return row.isPaid ? 'Sim' : 'Não'}},
+        { selector: row => 'status', name: 'Status', sortable: true, format: row => {
+          switch (row.status) {
+            case 'queue':
+              return 'Na Fila';
+            case 'washing':
+              return 'Lavando';
+            case 'finished':
+              return 'Finalizado';
+          }
+        }}
       ]);
       
       RequestController.read().then((requests) => { if(requests){

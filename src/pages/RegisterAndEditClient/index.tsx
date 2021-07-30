@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { Header } from '../../components/Header';
 import { LabelAndChange } from '../../components/LabelAndChange';
 import { Button } from '../../components/Button';
+import { Modal } from '../../components/Modal';
 
 import { Client } from '../../service/models/Client';
 import ClientController from '../../service/controllers/ClientController';
@@ -31,6 +32,10 @@ export function RegisterAndEditClient() {
   const [number, setNumber] = useState(0);
   const [district, setDistrict] = useState('');
   const [complement, setComplement] = useState('');
+  
+  const [alertFullFields, setAlertFullFields] = useState(false);
+  const [alertRegistered, setAlertRegistered] = useState(false);
+  const [alertEdited, setAlertEdited] = useState(false);
 
   useEffect(() => {
     if(params.id){
@@ -79,20 +84,18 @@ export function RegisterAndEditClient() {
       }
 
       if(params.id) {
-        ClientController.update(client).then((dados) => {
-          alert("Cliente "+dados?.name+" Editado com sucesso!!!");
-          history.push('/clients');
+        ClientController.update(client).then(() => {
+          setAlertEdited(true);
         });
       }
       else {
-        ClientController.create(client).then((dados) => {
-          alert("Cliente "+dados?.name+" cadastrado com sucesso!!!");
-          history.push('/clients');
+        ClientController.create(client).then(() => {
+          setAlertRegistered(true);
         });
       }
     }
     else{
-      alert("Preencha todos os campos");
+      setAlertFullFields(true);
     }
   }
 
@@ -190,7 +193,7 @@ export function RegisterAndEditClient() {
                   input 
                   name="Número"
                   type="text" 
-                  onChange={event => setNumber(parseFloat(event.target.value))}
+                  onChange={event => setNumber(parseFloat(event.target.value) || 0)}
                   placeholder="Digite o número do cliente..."
                   value={number !== 0 ? number : undefined}
                 />
@@ -220,7 +223,42 @@ export function RegisterAndEditClient() {
         </div>
         <Button onClick={handleChangeClient}>{params.id ? "Salvar Alterações" : "Cadastrar Cliente"}</Button>
       </main>
-    
+
+      {alertFullFields ? 
+        <Modal 
+          alert 
+          title="Alerta ao cadastrar cliente" 
+          handleToCancel={() => {setAlertFullFields(false)}}
+        >
+          Preencha todos os campos!
+        </Modal> 
+      : false}
+
+      {alertRegistered ? 
+        <Modal 
+          alert 
+          title="Cliente Cadastrado"
+          handleToCancel={() => {
+            setAlertRegistered(false); 
+            history.push('/clients');
+          }}
+        >
+          {`Cliente ${name} cadastrado com sucesso!`}
+        </Modal> 
+      : false}
+
+      {alertEdited ? 
+        <Modal 
+          alert 
+          title="Cliente Editado"
+          handleToCancel={() => {
+            setAlertEdited(false);
+            history.push('/clients');
+          }}
+        >
+          {`Cliente ${name} editado com sucesso!!!`}
+        </Modal> 
+      : false}
     </div>
   );
 }

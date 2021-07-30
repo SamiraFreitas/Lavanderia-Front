@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import logo from '../../assets/capa.png';
+import logo from '../../assets/washing-machine.png'
 
 import './styles.scss';
 

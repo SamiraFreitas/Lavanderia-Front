@@ -18,6 +18,15 @@
       background: #FFF;
       border: 0.1rem solid #0008;
       border-radius: 0.5rem;
+
+      &:focus {
+        border: 0.2rem solid #047F9F;
+        border-radius: 0.5rem;
+      }
+    }
+
+    input:disabled , select:disabled {
+      color: #898989;
     }
 
     span {

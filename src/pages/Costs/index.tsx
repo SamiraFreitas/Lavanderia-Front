@@ -1,55 +1,95 @@
-import { FormEvent, useState } from 'react';
-import { Button } from '../../components/Button';
-
+import { FormEvent, useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
-import {CalculateCosts} from '../../service/shared/CalculateCosts';
+import { Button } from '../../components/Button';
+import { LabelAndChange } from '../../components/LabelAndChange';
+
+import {Cost} from '../../service/models/Cost';
+import { CalculateCosts } from '../../service/shared/CalculateCosts';
+import CostController from '../../service/controllers/CostController';
 
 import './styles.scss'
+import { Modal } from '../../components/Modal';
 
 export function Costs() {
   const [expenses, setExpenses] = useState(0);
-  const [washValue, setWashValue] = useState(0);
-  const [desiredProfit, setDesiredProfit] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [washingMachine, setWashingMachine] = useState(0);
+  const [washingHand, setWashingHand] = useState(0);
+  const [washingDry, setWashingDry] = useState(0);
+  const [costMedium, setCostMedium] = useState(0);
+  const [weightMinimum, setWeightMinimum] = useState(0);
 
-  // Realizar chamada no backend de Custos.
-  const data = {
-    averageCost: 6000,
-    minimumWeight: 60,
-    profit: 1000,
-  }
-  const [averageCost, setAverageCost] = useState(data.averageCost);
-  const [minimumWeight, setMinimumWeight] = useState(data.minimumWeight);
-  const [profit, setProfit] = useState(data.profit);
+  const [alertFullFields, setAlertFullFields] = useState(false);
+  const [alertEdited, setAlertEdited] = useState(false);
+  
+  useEffect(() => {
+    CostController.show().then((dados) => {
+      if (dados) {
+        setExpenses(dados.expenses);
+        setProfit(dados.profit);
+        setWashingMachine(dados.washingMachine);
+        setWashingHand(dados.washingHand);
+        setWashingDry(dados.washingDry);
+        setCostMedium(dados.costMedium);
+        setWeightMinimum(dados.weightMinimum);
+      }
+    });
+  }, []);
   
   function handleCalculate(event: FormEvent) {
     event.preventDefault();
-    
-    let data = {
-      expenses,
-      washValue,
-      desiredProfit,
+
+    if(expenses !== 0 && profit !== 0 && washingMachine !== 0 
+      && washingHand !== 0 && washingDry !== 0) {
+      
+      let data: Cost = {
+        expenses,
+        profit,
+        washingMachine,
+        washingHand,
+        washingDry,
+        costMedium: 0,
+        weightMinimum: 0,
+      }
+  
+      const result = CalculateCosts(data);
+  
+      if(result){
+        setProfit(result?.profit);
+        setCostMedium(result?.costMedium);
+        setWeightMinimum(result?.weightMinimum);
+      }
     }
-
-    const result = CalculateCosts(data);
-
-    if(result){
-      setAverageCost(result?.averageCost);
-      setMinimumWeight(result?.minimumWeight);
-      setProfit(result?.profit);
+    else{
+      setAlertFullFields(true);
     }
   }
 
   function handleSaveEditions() {
-    const cost = {
-      expenses,
-      washValue,
-      desiredProfit,
-      averageCost,
-      minimumWeight,
-      profit,
+    if(expenses !== 0 && profit !== 0 && washingMachine !== 0 && washingHand !== 0 
+      && washingDry !== 0 && costMedium !== 0 && weightMinimum !== 0) {
+      
+      let data: Cost = {
+        expenses,
+        profit,
+        washingMachine,
+        washingHand,
+        washingDry,
+        costMedium,
+        weightMinimum
+      }
+
+      const cost = CalculateCosts(data);
+  
+      CostController.update(cost).then((dados) => {
+        if (dados) {
+          setAlertEdited(true);
+        }
+      });
     }
-    // Salvar cost no banco de dados
-    console.log(cost);
+    else{
+      setAlertFullFields(true);
+    }
   }
 
   return(
@@ -60,53 +100,100 @@ export function Costs() {
         <div className="board">
           <form onSubmit={handleCalculate}>
             <div>
-              <b>Despesas (R$)</b>
-              <input 
+              <h3>Valores Estipulados</h3>
+              <LabelAndChange
+                input 
+                name="Despesas"
                 type="text" 
                 placeholder="Digite o somatório das despesas..."
-                onChange={event => setExpenses(parseFloat(event.target.value))} 
+                onChange={event => setExpenses(parseFloat(event.target.value) || 0)}
+                value={expenses !== 0 ? expenses : undefined}
               />
-              <b>Lucro</b>
-              <input 
+
+              <LabelAndChange
+                input 
+                name="Lucro Desejado"
                 type="text" 
                 placeholder="Digite o lucro desejado..."
-                onChange={event => setDesiredProfit(parseFloat(event.target.value))} 
+                onChange={event => setProfit(parseFloat(event.target.value) || 0)}
+                value={profit !== 0 ? profit : undefined}
               />
             </div>
             
             <div>
-              <b>Valor lavagem (por Kg)</b>
-              <input 
+              <h3>Valores de Serviço  (por Kg)</h3>
+              <LabelAndChange
+                input 
+                name="Maquina"
                 type="text" 
                 placeholder="Digite o valor da lavagem por Kg..."
-                onChange={event => setWashValue(parseFloat(event.target.value))} 
+                onChange={event => setWashingMachine(parseFloat(event.target.value) || 0)}
+                value={washingMachine !== 0 ? washingMachine : undefined}
               />
-              <Button isOutlined type="submit">Calcular</Button>
+
+              <LabelAndChange
+                input 
+                name="Mão"
+                type="text" 
+                placeholder="Digite o valor da lavagem por Kg..."
+                onChange={event => setWashingHand(parseFloat(event.target.value) || 0)}
+                value={washingHand !== 0 ? washingHand : undefined}
+              />
+
+              <LabelAndChange
+                input 
+                name="Seco"
+                type="text" 
+                placeholder="Digite o valor da lavagem por Kg..."
+                onChange={event => setWashingDry(parseFloat(event.target.value) || 0)}
+                value={washingDry !== 0 ? washingDry : undefined}
+              />
             </div>
+
+            <Button isOutlined type="submit">Calcular</Button>
           </form>
           
           <div className="section">
             <h3>Previsão</h3>
             <div className="results" >
               <div>
-                <label>Custo médio mensal</label>
-                <p>{averageCost.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+                <LabelAndChange span name="Custo médio mensal">{costMedium.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</LabelAndChange>
               </div>
               
               <div>
-                <label>Peso mínimo a ser lavado</label>
-                <p>{minimumWeight}Kg</p>
+                <LabelAndChange span name="Peso mínimo a ser lavado">{weightMinimum} Kg</LabelAndChange>
               </div>
 
               <div>
-                <label>Lucro</label>
-                <p>{profit.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+                <LabelAndChange span name="Lucro Estimado">{profit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</LabelAndChange>
               </div>
             </div>
           </div>
         </div>
         <Button onClick={handleSaveEditions}>Salvar alterações</Button>
       </main>
+    
+      {alertFullFields ? 
+        <Modal 
+          alert 
+          title="Alerta ao calcular custos" 
+          handleToCancel={() => {setAlertFullFields(false)}}
+        >
+          Preencha todos os campos!
+        </Modal> 
+      : false}
+
+      {alertEdited ? 
+        <Modal 
+          alert 
+          title="Custo Editado"
+          handleToCancel={() => {
+            setAlertEdited(false);
+          }}
+        >
+          {`Custos editado com sucesso!!!`}
+        </Modal> 
+      : false}
     </div>
   );
 }

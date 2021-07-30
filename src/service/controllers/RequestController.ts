@@ -2,7 +2,7 @@ import { Request } from '../models/Request';
 import { Client } from '../models/Client';
 import { requests, clients } from '../data/data.json';
 
-export default {
+const RequestController = {
   async create(request: Request) {
     try {
       let requestsData: Request[] = [];
@@ -100,7 +100,7 @@ export default {
         requestsData = JSON.parse(JSON.stringify(requests));
       }
 
-      elements.map((element) => {
+      elements.forEach((element) => {
         const index = requestsData.findIndex((e) => e.id === element.id);
         if(index >= 0){
           requestsData.splice(index, 1);
@@ -142,3 +142,5 @@ export default {
     }
   },
 }
+
+export default RequestController;
