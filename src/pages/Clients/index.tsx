@@ -11,6 +11,7 @@ export function Clients() {
   const history = useHistory();
   const [rowsSelected, setRowsSelected] = useState<Row[]>([]);
 
+
   async function handleToNewClient() {
     history.push('/new/client');
   }
