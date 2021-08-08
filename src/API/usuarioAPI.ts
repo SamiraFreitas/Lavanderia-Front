@@ -17,7 +17,10 @@ class UsuarioAPI {
 				console.log(res.data);
 				return res.data as Usuario[];
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.log(err);
+				return null;
+			});
 
 		return response;
 	};
@@ -30,8 +33,8 @@ class UsuarioAPI {
 				return res.data as Usuario;
 			})
 			.catch((err) => {
-				console.log(err)
-				return null
+				console.log(err);
+				return null;
 			});
 
 		return response;
@@ -45,8 +48,8 @@ class UsuarioAPI {
 				return res.data as Usuario[];
 			})
 			.catch((err) => {
-				console.log(err)
-				return null
+				console.log(err);
+				return null;
 			});
 
 		return response;
@@ -60,8 +63,8 @@ class UsuarioAPI {
 				return res.data as string;
 			})
 			.catch((err) => {
-				console.log(err)
-				return null
+				console.log(err);
+				return null;
 			});
 
 		return response;
@@ -75,8 +78,8 @@ class UsuarioAPI {
 				return res.data as string;
 			})
 			.catch((err) => {
-				console.log(err)
-				return null
+				console.log(err);
+				return null;
 			});
 
 		return response;
@@ -87,31 +90,30 @@ class UsuarioAPI {
 			.put(baseURL + `/usuario/up=${body.cpf}`, body)
 			.then((res) => {
 				console.log(res.data);
-				return res.data as Usuario
+				return res.data as Usuario;
 			})
 			.catch((err) => {
-				console.log(err)
-				return null
-			})
-		
+				console.log(err);
+				return null;
+			});
+
 		return response;
-	}
+	};
 
 	doLogin = async (cpf: string, password: string) => {
-		
-		const user = await this.getUsuarioByCPF(cpf)
+		const user = await this.getUsuarioByCPF(cpf);
 
 		if (user !== null) {
 			if (user.senha === password) {
-				console.log('Login success')
-				return [user, true]
+				console.log("Login success");
+				return [user, true];
 			} else {
-				return [null, false]
+				return [null, false];
 			}
 		} else {
-			return [null, false]
+			return [null, false];
 		}
-	}
+	};
 }
 
 export default UsuarioAPI;
