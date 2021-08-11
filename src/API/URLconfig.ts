@@ -1,3 +1,3 @@
 const baseURL = "http://localhost:1337";
 
-export default baseURL
+export default baseURL;
