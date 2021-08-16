@@ -10,22 +10,21 @@ import { Costs } from './pages/Costs';
 
 function App() {
   return (
-    <BrowserRouter>
-        <Switch>
-            {localStorage.getItem('token') ? (
-              <Sidebar>
-                <Route path="/clients" component={ReadAndExcludeClient}/>
-                <Route path="/new/client" component={RegisterAndEditClient}/>
-                <Route path="/edit/client/:id" component={RegisterAndEditClient}/>
-                <Route path="/requests" component={ReadAndExcludeRequest}/>
-                <Route path="/new/request" component={RegisterAndEditRequest}/>
-                <Route path="/edit/request/:id" component={RegisterAndEditRequest}/>
-                <Route path="/costs" component={Costs}/>
-              </Sidebar>
-            ): <Route path="/" exact component={Login}/>}
-        </Switch>
-    </BrowserRouter>
-  );
+		<BrowserRouter>
+			<Switch>
+				<Route path='/' exact component={Login} />
+				<Sidebar>
+					<Route path='/clients' component={ReadAndExcludeClient} />
+					<Route path='/new/client' component={RegisterAndEditClient} />
+					<Route path='/edit/client/:id' component={RegisterAndEditClient} />
+					<Route path='/requests' component={ReadAndExcludeRequest} />
+					<Route path='/new/request' component={RegisterAndEditRequest} />
+					<Route path='/edit/request/:id' component={RegisterAndEditRequest} />
+					<Route path='/costs' component={Costs} />
+				</Sidebar>
+			</Switch>
+		</BrowserRouter>
+	);
 }
 
 export default App;

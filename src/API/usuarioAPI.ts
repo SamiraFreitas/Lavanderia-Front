@@ -10,6 +10,17 @@ interface Usuario {
 }
 
 class UsuarioAPI {
+
+	UsuarioAPI = () => {
+		this.LogedUser = {} as Usuario
+	}
+
+	LogedUser!: Usuario;
+
+	setLogedUser = (user: Usuario) => {
+		this.LogedUser = user
+	}
+
 	getAllUsuarios = async () => {
 		const response = await axios
 			.get(baseURL + "/usuario")
@@ -26,18 +37,20 @@ class UsuarioAPI {
 	};
 
 	getUsuarioByCPF = async (cpf: string) => {
+
 		const response = await axios
 			.get(baseURL + `/getusuario/${cpf}`)
 			.then((res) => {
-				console.log(res.data);
-				return res.data as Usuario;
+				return res.data[0];
 			})
 			.catch((err) => {
 				console.log(err);
 				return null;
 			});
+		
+		const user: Usuario | null = response
 
-		return response;
+		return user;
 	};
 
 	getAllUsuariosByCNPJ_LAVANDERIA = async (cnpj: string) => {
@@ -98,21 +111,6 @@ class UsuarioAPI {
 			});
 
 		return response;
-	};
-
-	doLogin = async (cpf: string, password: string) => {
-		const user = await this.getUsuarioByCPF(cpf);
-
-		if (user !== null) {
-			if (user.senha === password) {
-				console.log("Login success");
-				return [user, true];
-			} else {
-				return [null, false];
-			}
-		} else {
-			return [null, false];
-		}
 	};
 }
 

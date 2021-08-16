@@ -5,39 +5,36 @@ import { LabelAndChange } from '../../components/LabelAndChange';
 import { Button } from '../../components/Button';
 import { Modal } from '../../components/Modal';
 
-import {Administrator} from '../../service/models/Administrator'
-import AdministratorController from '../../service/controllers/AdministratorController';
-
 import washingMachine from '../../assets/washing-machine.png';
 import './styles.scss'
+
+import UsuarioAPI from '../../API/usuarioAPI';
+
+export const UsuarioData = new UsuarioAPI();
 
 export function Login() {
   const history = useHistory();
 
-  const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
   const [alertFullFields, setAlertFullFields] = useState(false);
   const [incorrectDados, setIncorrectDados] = useState(false);
-  
-  function handleToLogin(event: FormEvent) {
+
+  async function handleToLogin(event: FormEvent) {
     event.preventDefault();
 
-    if(email !== '' && password !== '') {
+    if (cpf !== '' && password !== '') {
       
-      const admin: Administrator = {
-        email,
-        password,
-        token: ''
+      const loginData = await UsuarioData.getUsuarioByCPF(cpf)
+
+      if (loginData?.senha === password) {
+        UsuarioData.setLogedUser(loginData)
+        history.push('/clients');
+        window.location.reload();
       }
-      AdministratorController.login(admin).then(result => {
-        if(result){
-          history.push('/clients');
-          window.location.reload();
-        }
-        else {
-          setIncorrectDados(true);
-        }
-      });
+      else {
+        setIncorrectDados(true)
+      }
     }
     else {
       setAlertFullFields(true);
@@ -60,10 +57,10 @@ export function Login() {
           <form onSubmit={handleToLogin}>
             <LabelAndChange
               input 
-              name="Email"
+              name="CPF"
               type="text" 
-              onChange={event => setEmail(event.target.value)}
-              placeholder="Digite seu email..."
+              onChange={event => setCpf(event.target.value)}
+              placeholder="Digite seu cpf..."
             />
             <LabelAndChange
               input 
