@@ -28,9 +28,9 @@ export function Login() {
       const loginData = await UsuarioData.getUsuarioByCPF(cpf)
 
       if (loginData?.senha === password) {
-        UsuarioData.setLogedUser(loginData)
+        UsuarioData.LogedUser = loginData
         history.push('/clients');
-        window.location.reload();
+        // window.location.reload();
       }
       else {
         setIncorrectDados(true)

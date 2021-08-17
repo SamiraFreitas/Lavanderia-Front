@@ -11,10 +11,6 @@ interface Usuario {
 
 class UsuarioAPI {
 
-	UsuarioAPI = () => {
-		this.LogedUser = {} as Usuario
-	}
-
 	LogedUser!: Usuario;
 
 	setLogedUser = (user: Usuario) => {
