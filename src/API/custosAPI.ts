@@ -11,19 +11,30 @@ interface Custos {
 }
 
 class CustosAPI {
+
+	costs!: Custos
+
+	setCosts = async (cnpj: string) => {
+		const newCosts = await this.getCustos(cnpj);
+
+		this.costs = newCosts
+	}
+
 	getCustos = async (cnpj: string) => {
 		const response = await axios
 			.get(baseURL + `/getcustos/${cnpj}`)
 			.then((res) => {
-				console.log(res.data);
-				return res.data as Custos[];
+				console.log(res.data[0]);
+				return res.data[0] as Custos;
 			})
 			.catch((err) => {
 				console.log(err);
-				return null;
+				return {} as Custos;
 			});
+		
+		const custo: Custos = response 
 
-		return response;
+		return custo;
 	};
 
 	insertCustos = async (body: Custos) => {
@@ -71,5 +82,7 @@ class CustosAPI {
 		return response;
   };
 }
+
+export type {Custos}
 
 export default CustosAPI
