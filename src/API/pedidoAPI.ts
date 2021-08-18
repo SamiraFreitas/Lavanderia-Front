@@ -1,7 +1,7 @@
 import axios from "axios";
 import baseURL from "./URLconfig";
 
-interface Pedido {
+export interface Pedido {
 	id: number;
 	peso: number;
 	tipo: number;
@@ -10,7 +10,7 @@ interface Pedido {
 	cpf_cliente: string;
 }
 
-interface PedidoDTO {
+export interface PedidoDTO {
 	peso: number;
 	tipo: number;
 	status: string;
@@ -69,11 +69,11 @@ class PedidoAPI {
 			.get(baseURL + `/pedido/id=${id}`)
 			.then((res) => {
 				console.log(res.data);
-				return res.data as Pedido;
+				return res.data[0] as Pedido;
 			})
 			.catch((err) => {
 				console.log(err);
-				return null;
+				return {} as Pedido;
 			});
 
 		return response;
@@ -111,7 +111,7 @@ class PedidoAPI {
 
 	createPedido = async (body: PedidoDTO) => {
 		const response = await axios
-			.post(baseURL + "/pedido")
+			.post(baseURL + "/pedido", body)
 			.then((res) => {
 				console.log(res.data);
 				return res.data as string;

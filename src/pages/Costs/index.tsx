@@ -167,13 +167,13 @@ export function Costs() {
 						<div className='results'>
 							<div>
 								<LabelAndChange span name='Peso máximo a ser lavado'>
-									{weightMaximun} Kg
+									{weightMaximun.toFixed(2)} Kg
 								</LabelAndChange>
 							</div>
 
 							<div>
 								<LabelAndChange span name='Lucro Estimado'>
-                  R${profit}
+                  R${profit.toFixed(2)}
 								</LabelAndChange>
 							</div>
 						</div>

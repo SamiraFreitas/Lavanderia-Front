@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PedidoAPI from '../../API/pedidoAPI';
 
 import { Header } from '../../components/Header';
 import { Modal } from '../../components/Modal';
 import { PageCRUD } from '../../components/PageCRUD';
-import { Row } from '../../hooks/useTable';
-
-import RequestController from '../../service/controllers/RequestController';
 
 export function ReadAndExcludeRequest() {
   const history = useHistory();
-  const [rowsSelected, setRowsSelected] = useState<Row[]>([]);
+  const [rowsSelected, setRowsSelected] = useState<any[]>([]);
 
   const [justOneRequest, setJustOneRequest] = useState(false);
   const [selectOneRequest, setSelectOneRequest] = useState(false);
   const [selectMoreRequest, setSelectMoreRequest] = useState(false);
   const [confirmExcludedRequest, setConfirmExcludedRequest] = useState(false);
   const [excludedRequest, setExcludedRequest] = useState(false);
+
+  const [pedidos, setPedidos] = useState(new PedidoAPI())
 
   async function handleToNewRequest() {
     history.push('/new/request');
@@ -31,7 +31,7 @@ export function ReadAndExcludeRequest() {
       setSelectOneRequest(true);
       return
     }
-    history.push(`/edit/request/${rowsSelected[0].id}`);
+    history.push(`/edit/request/${rowsSelected[0].id_pedido}`);
   }
 
   async function handleToRemoveRequest() {
@@ -91,12 +91,13 @@ export function ReadAndExcludeRequest() {
           handleToCancel={() => {setConfirmExcludedRequest(false)}}
           handleToConfirm={() => {
             setConfirmExcludedRequest(false);
-            RequestController.delete(rowsSelected).then(() => {
-              setExcludedRequest(true);
-            });
+            for (var el in rowsSelected) {
+							pedidos.deletePedido(rowsSelected[el].id_pedido);
+            }
+            setExcludedRequest(true)
           }}
         >
-          {`Deseja excluir o(s) pedido(s) ${rowsSelected.map(e => ' '+e.name)} ?`}
+          {`Deseja excluir o(s) pedido(s) ${rowsSelected.map(e => ' '+e.id_pedido)} ?`}
         </Modal> 
       : false}
 
@@ -106,7 +107,7 @@ export function ReadAndExcludeRequest() {
           title="Alerta ao excluir pedido" 
           handleToCancel={() => {
             setExcludedRequest(false)
-            window.location.reload();
+            history.push("/costs");
           }}
         >
           Pedidos excluídos com sucesso!

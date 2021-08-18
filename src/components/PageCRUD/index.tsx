@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Row, useTable } from '../../hooks/useTable';
+import { useTable } from '../../hooks/useTable';
 
 import DataTable, { RowRecord } from "react-data-table-component";
 import { Button } from '../Button';
@@ -11,7 +11,7 @@ type PageCRUDProps = {
   handleToNew: () => {};
   handleToEdit: () => {};
   handleToRemove: () => {};
-  setRowsSelected: React.Dispatch<React.SetStateAction<Row[]>>
+  setRowsSelected: React.Dispatch<React.SetStateAction<any[]>>
 }
 
 type SelectedRows = {
@@ -50,7 +50,7 @@ export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setR
 
   async function handleToSelected(elements: SelectedRows) {
     const selected = new Set(elements.selectedRows);
-    setRowsSelected(rows.filter((element: Row) => selected.has(element)));
+    setRowsSelected(rows.filter((element) => selected.has(element)));
   }
 
   return(
@@ -70,7 +70,7 @@ export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setR
           </div>
           <input 
             type="text" 
-            placeholder={`Pesquise um ${title === 'clients' ? 'cliente' : 'pedido'} pelo nome...`} 
+            placeholder={`Pesquise um ${title === 'clients' ? 'cliente pelo nome...' : 'pedido pelo cpf do cliente...'}`} 
             onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
           />
         </div>

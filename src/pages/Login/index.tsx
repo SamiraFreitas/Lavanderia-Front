@@ -29,7 +29,7 @@ export function Login() {
 
       if (loginData?.senha === password) {
         UsuarioData.LogedUser = loginData
-        history.push('/clients');
+        history.push('/costs');
         // window.location.reload();
       }
       else {

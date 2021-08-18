@@ -1,87 +1,139 @@
-import { useEffect, useState } from 'react';
-import { TableColumn } from 'react-data-table-component/dist/DataTable/types';
-import ClientController from '../service/controllers/ClientController';
-import RequestController from '../service/controllers/RequestController';
+import { useEffect, useState } from "react";
+import { TableColumn } from "react-data-table-component/dist/DataTable/types";
+import ClientController from "../service/controllers/ClientController";
+import RequestController from "../service/controllers/RequestController";
+
+import ClienteAPI, { Cliente } from "../API/clienteAPI";
+import PedidoAPI, { Pedido } from "../API/pedidoAPI";
+import { UsuarioData } from "../pages/Login";
 
 type TableProps = {
-  type: string;
-  search: string;
-}
+	type: string;
+	search: string;
+};
 
-export type Row = { 
-  id: string;
-  name?: string;
 
-  cpf?: string;
-  phone?: string; 
-  email?: string;
 
-  weight?: number;
-  price?: number;
-  isPaid?: boolean | string;
-  status?: string;
-}
+export function useTable({ type, search }: TableProps) {
+	const [columns, setColumns] = useState<TableColumn[]>([]);
+	const [rows, setRows] = useState<any[]>([]);
 
-export function useTable({type, search}: TableProps) {
-  const [columns, setColumns] = useState<TableColumn[]>([]);
-  const [rows, setRows] = useState<Row[]>([]);
+	useEffect(() => {
+		const clientes = new ClienteAPI()
+		const pedidos = new PedidoAPI()
 
-  useEffect(() => {
-    if(type === 'clients') {
-      setColumns([
-        { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
-        { selector: row => 'cpf', name: 'CPF', sortable: true, format: row => {return row.cpf.toString()}},
-        { selector: row => 'phone', name: 'Telefone', sortable: true, format: row => {return row.phone.toString()}},
-        { selector: row => 'email', name: 'Email', sortable: true, format: row => {return row.email.toString()}}
-      ]);
-      ClientController.read().then((clients) => { if(clients){
-        if(search.trim() === '') {
-          setRows(clients);
-        }
-        else {
-          setRows(clients.filter((client) => {
-            if(client.name){
-              return client.name.includes(search);
-            }
-            else return false;
-          }));
-        }
-      }});
-    } 
-    else if(type === 'requests') {
-      setColumns([
-        { selector: row => 'date', name: 'Data', sortable: true, format: row => {return row.date.toString()}},
-        { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
-        { selector: row => 'weight', name: 'Peso', sortable: true, format: row => {return row.weight.toString().concat(' Kg')}},
-        { selector: row => 'price', name: 'Preço', sortable: true, format: row => {return row.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}},
-        { selector: row => 'isPaid', name: 'Pago', sortable: true, format: row => {return row.isPaid ? 'Sim' : 'Não'}},
-        { selector: row => 'status', name: 'Status', sortable: true, format: row => {
-          switch (row.status) {
-            case 'queue':
-              return 'Na Fila';
-            case 'washing':
-              return 'Lavando';
-            case 'finished':
-              return 'Finalizado';
-          }
-        }}
-      ]);
-      
-      RequestController.read().then((requests) => { if(requests){
-        if(search.trim() === '') {
-          setRows(requests);
-        }
-        else {
-          setRows(requests.filter((request) => {
-            if(request.name){
-              return request.name.includes(search);
-            }
-            else return false;
-          }));
-        }
-      }});
-    }
-  }, [type, search]);
+		if (type === "clients") {
+			setColumns([
+				{
+					selector: (row) => "name",
+					name: "Nome",
+					sortable: true,
+					format: (row) => {
+						return row.nome;
+					},
+				},
+				{
+					selector: (row) => "cpf",
+					name: "CPF",
+					sortable: true,
+					format: (row) => {
+						return row.cpf;
+					},
+				},
+				{
+					selector: (row) => "phone",
+					name: "Telefone",
+					sortable: true,
+					format: (row) => {
+						return row.telefone;
+					},
+				},
+				{
+					selector: (row) => "email",
+					name: "Email",
+					sortable: true,
+					format: (row) => {
+						return row.email;
+					},
+				},
+			]);
+			clientes
+				.getAllClientesByLavanderia(UsuarioData.LogedUser.cnpj_lavanderia)
+				.then((clients) => {
+					if (clients) {
+						if (search.trim() === "") {
+							setRows(clients);
+						} else {
+							setRows(
+								clients.filter((client) => {
+									if (client.nome) {
+										return client.nome.includes(search);
+									} else return false;
+								})
+							);
+						}
+					}
+				});
+		} else if (type === "requests") {
+			setColumns([
+				{
+					selector: (row) => "id",
+					name: "ID",
+					sortable: true,
+					format: (row) => {
+						return row.id_pedido;
+					},
+				},
+				{
+					selector: (row) => "cpf",
+					name: "CPF",
+					sortable: true,
+					format: (row) => {
+						return row.cpf_cliente;
+					},
+				},
+				{
+					selector: (row) => "weight",
+					name: "Peso",
+					sortable: true,
+					format: (row) => {
+						return `${row.peso} Kg`;
+					},
+				},
+				{
+					selector: (row) => "price",
+					name: "Preço",
+					sortable: true,
+					format: (row) => {
+						return `R$${row.preco}`;
+					},
+				},
+				{
+					selector: (row) => "status",
+					name: "Status",
+					sortable: true,
+					format: (row) => {
+						return row.status;
+					},
+				},
+			]);
 
-  return {columns, rows};
+			pedidos.getAllPedidosByLavanderia(UsuarioData.LogedUser.cnpj_lavanderia).then((requests) => {
+				if (requests) {
+					if (search.trim() === "") {
+						setRows(requests);
+					} else {
+						setRows(requests.filter((request) => {
+						  if(request.cpf_cliente){
+						    return request.cpf_cliente.includes(search);
+						  }
+						  else return false;
+						}));
+					}
+				}
+			});
+		}
+	}, [type, search]);
+
+	return { columns, rows };
 }

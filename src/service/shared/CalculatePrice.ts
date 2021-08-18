@@ -1,31 +1,33 @@
-import CostController from '../controllers/CostController';
+import CustosAPI from '../../API/custosAPI';
+import { UsuarioData } from '../../pages/Login'
 
 type PriceProps = {
-  type: string;
+  type: number;
   weight: number;
-  isDelivery: boolean;
 }
 
-export async function CalculatePrice({type, weight, isDelivery}: PriceProps) {
+export async function CalculatePrice({type, weight}: PriceProps) {
 
   let priceKg = 0;
 
-  await CostController.show().then((dados) => {
+  const custos = new CustosAPI()
+
+  await custos.getCustos(UsuarioData.LogedUser.cnpj_lavanderia).then((dados) => {
     if (dados) {
       switch (type) {
-        case 'machine':
-          priceKg = dados.washingMachine;
+        case 1:
+          priceKg = dados.custo_maquina;
           break;
-        case 'hand':
-          priceKg = dados.washingHand;
+        case 2:
+          priceKg = dados.custo_mao;
           break;
-        case 'dry':
-          priceKg = dados.washingDry;
+        case 3:
+          priceKg = dados.custo_seco;
           break;
       }
     }
   });
 
-  const price = priceKg * (weight > 0 ? weight : 0) + (isDelivery ? 5 : 0);
+  const price = priceKg * (weight > 0 ? weight : 0);
   return price;
 }

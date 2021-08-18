@@ -1,7 +1,7 @@
 import axios from "axios";
 import baseURL from "./URLconfig";
 
-interface Cliente {
+export interface Cliente {
 	nome: string;
 	cpf: string;
 	telefone: string;
@@ -19,7 +19,7 @@ class ClienteAPI {
 			})
 			.catch((err) => {
 				console.log(err);
-				return null;
+				return [] as Cliente[];
 			});
 
 		return response;
@@ -30,11 +30,11 @@ class ClienteAPI {
 			.get(baseURL + `/cliente/${cpf}`)
 			.then((res) => {
 				console.log(res.data);
-				return res.data as Cliente;
+				return res.data[0] as Cliente;
 			})
 			.catch((err) => {
 				console.log(err);
-				return null;
+				return {} as Cliente;
 			});
 
 		return response;

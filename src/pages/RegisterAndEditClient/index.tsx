@@ -11,6 +11,8 @@ import { Client } from '../../service/models/Client';
 import ClientController from '../../service/controllers/ClientController';
 
 import './styles.scss'
+import ClienteAPI, { Cliente } from '../../API/clienteAPI';
+import { UsuarioData } from '../Login';
 
 type ClientParams = {
   id: string;
@@ -20,76 +22,65 @@ export function RegisterAndEditClient() {
   const history = useHistory();
   const params = useParams<ClientParams>();
 
-  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [cep, setCep] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [street, setStreet] = useState('');
-  const [number, setNumber] = useState(0);
-  const [district, setDistrict] = useState('');
-  const [complement, setComplement] = useState('');
+  const [cnpj, setCnpj] = useState('');
   
   const [alertFullFields, setAlertFullFields] = useState(false);
   const [alertRegistered, setAlertRegistered] = useState(false);
   const [alertEdited, setAlertEdited] = useState(false);
 
+  const [clientes, setClientes] = useState(new ClienteAPI())
+
   useEffect(() => {
     if(params.id){
-      ClientController.show(params.id, 'id').then((dados) => {
+      clientes.getCliente(params.id).then((dados) => {
         if (dados) {
-          setId(dados.id);
-          setName(dados.name);
+          setName(dados.nome);
           setCpf(dados.cpf);
           setEmail(dados.email);
-          setPhone(dados.phone);
-          setCep(dados.cep);
-          setCity(dados.city);
-          setState(dados.state);
-          setStreet(dados.street);
-          setNumber(dados.number);
-          setDistrict(dados.district);
-          setComplement(dados.complement);
+          setPhone(dados.telefone);
+          setCnpj(dados.cnpj_lavanderia);
         }
         else{
           history.push('/clients');
         }
       });
     }
-  },[params, history]);
+  },[params, history, clientes]);
 
   function handleChangeClient(){
     
     if(name !== '' && cpf !== '' && email !== '' && 
-      phone !== '' && cep !== '' && city !== '' && 
-      state !== '' && street !== '' && number !== null && 
-      district !== '' && complement !== '') {
-        
-      const client: Client = {
-        id: id === '' ? uuid() : id,
-        name,
-        cpf,
-        email,
-        phone,
-        cep,
-        city,
-        state,
-        street,
-        number,
-        district,
-        complement
-      }
+      phone !== '' && cpf.length === 11) {
 
-      if(params.id) {
-        ClientController.update(client).then(() => {
+      if (params.id) {
+        
+        const client: Cliente = {
+					nome: name,
+					cpf: cpf,
+					email: email,
+					telefone: phone,
+					cnpj_lavanderia: cnpj,
+				};
+
+        clientes.updateCliente(client.cpf, client).then(() => {
           setAlertEdited(true);
         });
       }
       else {
-        ClientController.create(client).then(() => {
+
+        const client: Cliente = {
+					nome: name,
+					cpf: cpf,
+					email: email,
+					telefone: phone,
+					cnpj_lavanderia: UsuarioData.LogedUser.cnpj_lavanderia,
+				};
+
+        clientes.createCliente(client).then(() => {
           setAlertRegistered(true);
         });
       }
@@ -129,7 +120,8 @@ export function RegisterAndEditClient() {
 
               <div>
                 <LabelAndChange
-                  input 
+                  input
+                  readOnly={params.id ? true : false}
                   name="CPF"
                   type="text" 
                   onChange={event => setCpf(event.target.value)}
@@ -147,78 +139,6 @@ export function RegisterAndEditClient() {
                 />
               </div>
             </div>
-
-            <h2>Endereço</h2>
-            <div className="Infos">
-              <div>
-                <LabelAndChange
-                  input 
-                  name="CEP"
-                  type="text" 
-                  onChange={event => setCep(event.target.value)}
-                  placeholder="Digite o CEP do cliente..."
-                  value={cep !== '' ? cep : undefined}
-                />
-
-                <LabelAndChange
-                  input 
-                  name="Rua"
-                  type="text" 
-                  onChange={event => setStreet(event.target.value)}
-                  placeholder="Digite o rua do cliente..."
-                  value={street !== '' ? street : undefined}
-                />
-
-                <LabelAndChange
-                  input 
-                  name="Complemento"
-                  type="text" 
-                  onChange={event => setComplement(event.target.value)}
-                  placeholder="Digite o complemento do endereço..."
-                  value={complement !== '' ? complement : undefined}
-                />
-              </div>
-
-              <div>
-                <LabelAndChange
-                  input 
-                  name="Cidade"
-                  type="text" 
-                  onChange={event => setCity(event.target.value)}
-                  placeholder="Digite o cidade do cliente..."
-                  value={city !== '' ? city : undefined}
-                />
-
-                <LabelAndChange
-                  input 
-                  name="Número"
-                  type="text" 
-                  onChange={event => setNumber(parseFloat(event.target.value) || 0)}
-                  placeholder="Digite o número do cliente..."
-                  value={number !== 0 ? number : undefined}
-                />
-              </div>
-
-              <div>
-                <LabelAndChange
-                  input 
-                  name="Estado"
-                  type="text" 
-                  onChange={event => setState(event.target.value)}
-                  placeholder="Digite o estado do cliente..."
-                  value={state !== '' ? state : undefined}
-                />
-
-                <LabelAndChange
-                  input 
-                  name="Bairro"
-                  type="text" 
-                  onChange={event => setDistrict(event.target.value)}
-                  placeholder="Digite o bairro do cliente..."
-                  value={district !== '' ? district : undefined}
-                />
-              </div>
-            </div>
           </form>
         </div>
         <Button onClick={handleChangeClient}>{params.id ? "Salvar Alterações" : "Cadastrar Cliente"}</Button>
@@ -230,7 +150,7 @@ export function RegisterAndEditClient() {
           title="Alerta ao cadastrar cliente" 
           handleToCancel={() => {setAlertFullFields(false)}}
         >
-          Preencha todos os campos!
+          Preencha todos os campos corretamente!
         </Modal> 
       : false}
 
