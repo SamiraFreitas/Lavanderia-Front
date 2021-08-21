@@ -74,7 +74,7 @@ export function Costs() {
         lucro_esperado: profit,
         custo_mao: washingHand,
         custo_maquina: washingMachine,
-        custo_seco: washingMachine,
+        custo_seco: washingDry,
         cnpj_lavanderia: data.LogedUser.cnpj_lavanderia
       }
 
