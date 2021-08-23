@@ -31,6 +31,10 @@ Essa aplicação possui um protótipo que pode ser acessado através do link  [F
 
  O projeto é de livre acesso e uso, então fique à-vontade para realizar um Fork e utilizar do mesmo, bem como utilizar o template para criação de outros sistemas de gerencia além de sugerir dicas e melhorias
 
+## License
+[MIT License](https://github.com/SamiraFreitas/Lavanderia-Front/blob/add-license-1-1/LICENSE)
+
+
 ## 💻 Como baixar o projeto 
 
 ```bash
