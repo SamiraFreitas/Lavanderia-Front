@@ -7,6 +7,7 @@
 - [👀 Layout da aplicação](#-layout-da-aplicação)
 - [👾 Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [💻 Como baixar o projeto](#-como-baixar-o-projeto)
+- [💞 Contribuição](#-contribuição)
 
 
 ## 📝 Sobre 
@@ -26,6 +27,9 @@ Essa aplicação possui um protótipo que pode ser acessado através do link  [F
 - React
 - Typescript
 
+## 💞 Contribuição
+
+ O projeto é de livre acesso e uso, então fique à-vontade para realizar um Fork e utilizar do mesmo, bem como utilizar o template para criação de outros sistemas de gerencia além de sugerir dicas e melhorias
 
 ## 💻 Como baixar o projeto 
 
