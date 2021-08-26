@@ -27,13 +27,6 @@ Essa aplicação possui um protótipo que pode ser acessado através do link  [F
 - React
 - Typescript
 
-## 💞 Contribuição
-
- O projeto é de livre acesso e uso, então fique à-vontade para realizar um Fork e utilizar do mesmo, bem como utilizar o template para criação de outros sistemas de gerencia além de sugerir dicas e melhorias
-
-## License
-[MIT License](https://github.com/SamiraFreitas/Lavanderia-Front/blob/0db9216520adc08d803de7ce568b75ca1cbfa5e0/LICENSE)
-
 
 ## 💻 Como executar o front do projeto
 
@@ -62,3 +55,9 @@ $ npm install ou npm i
 #Rode o projeto 
 $ npm run dev
 ```
+## 💞 Contribuição
+
+ O projeto é de livre acesso e uso, então fique à-vontade para realizar um Fork e utilizar do mesmo, bem como utilizar o template para criação de outros sistemas de gerencia além de sugerir dicas e melhorias
+
+## License
+[MIT License](https://github.com/SamiraFreitas/Lavanderia-Front/blob/0db9216520adc08d803de7ce568b75ca1cbfa5e0/LICENSE)
