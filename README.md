@@ -6,9 +6,9 @@
 - [📝 Sobre](#-sobre)
 - [👀 Layout da aplicação](#-layout-da-aplicação)
 - [👾 Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [💻 Como baixar o projeto](#-como-baixar-o-projeto)
+- [💻 Como executar o front do projeto](#-como-executar-o-front-do-projeto)
+- [💻 Como executar o back do projeto ](#-como-executar-o-back-do-projeto)
 - [💞 Contribuição](#-contribuição)
-
 
 ## 📝 Sobre 
 Este repositório é referente ao projeto de desenvolvimento web para a matéria Banco de Dados I, essa implementação é referente ao front da aplicação. 
@@ -35,7 +35,7 @@ Essa aplicação possui um protótipo que pode ser acessado através do link  [F
 [MIT License](https://github.com/SamiraFreitas/Lavanderia-Front/blob/0db9216520adc08d803de7ce568b75ca1cbfa5e0/LICENSE)
 
 
-## 💻 Como baixar o projeto 
+## 💻 Como executar o front do projeto
 
 ```bash
 #Clonando o repositorio 
@@ -47,4 +47,18 @@ $ yarn install
 #Rode o projeto 
 $ yarn start 
 
+```
+## 💻 Como executar o back do projeto 
+
+o Código pode ser encontrado em : [💻 back-end](https://github.com/ffvasconcelos/lavanderia_backend)
+
+Inicialmente baixe o PostgreSQL e crie um banco de dados chamado "la_vanderia" com a senha "12345" na porta padrão do Postgres a partir do script "create_database_script.sql".
+
+A partir do repositório rodar no bash para instalar as dependências: 
+
+```bash
+# Instalar as dependências
+$ npm install ou npm i
+#Rode o projeto 
+$ npm run dev
 ```
