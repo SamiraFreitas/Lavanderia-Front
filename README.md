@@ -1,26 +1,25 @@
 ![loginn](https://user-images.githubusercontent.com/73719899/127694175-a57448c6-75eb-4f46-9949-ef0c8bc61e7b.png)
 
 
-## 📜 Índice
-- [📜 Índice](#-índice)
-- [📝 Sobre](#-sobre)
-- [👀 Layout da aplicação](#-layout-da-aplicação)
-- [👾 Tecnologias Utilizadas](#-tecnologias-utilizadas)
+## 📜 Index
+- [📜 Index](#-índice)
+- [📝 About](#-sobre)
+- [👀 Application layout](#-layout-da-aplicação)
+- [👾 Technologies Used](#-tecnologias-utilizadas)
 - [💻 Como executar o front do projeto](#-como-executar-o-front-do-projeto)
 - [💻 Como executar o back do projeto ](#-como-executar-o-back-do-projeto)
 - [💞 Contribuição](#-contribuição)
 
 ## 📝 Sobre 
-Este repositório é referente ao projeto de desenvolvimento web para a matéria Banco de Dados I, essa implementação é referente ao fron-end  e back-end da aplicação. 
-O sistema administrativo tem como objetivo controlar clientes, pedidos e custos de uma lavanderia. 
-A aplicação tera consulta a um banco de dados. Além disso, possuirá cruds para os clientes, e os pedidos. 
+This repository refers to the web development project for the Database I subject, this implementation refers to the front-end and back-end of the application.
+The administrative system aims to control customers, orders and costs of a laundry.
+The application will query a database. In addition, it will have cruds for customers and orders.
 
-## 👀 Layout da aplicação
+## 👀 Application layout
+This application has a prototype that can be accessed through the link  [Figma](https://www.figma.com/file/rdFc8096UUnOuOpaaSLerv/Untitled)
 
-Essa aplicação possui um protótipo que pode ser acessado através do link  [Figma](https://www.figma.com/file/rdFc8096UUnOuOpaaSLerv/Untitled)
 
-
-## 👾 Tecnologias Utilizadas 
+## 👾 Technologies Used
 - HTML  
 - Js
 - CSS
